@@ -35,12 +35,31 @@
 
 		<div class="reveal">
 			<div class="slides">
-				<section data-markdown="assets/markdown/title.md"
+				<section 
 					data-separator="^\n\n\n"
 					data-separator-vertical="^\n\n"
 					data-separator-notes="^Note:"
 					data-charset="iso-8859-15"
 					data-background="assets/images/layout_graphic_action_script.svg">
+					<h1>Fun With Interfaces	</h1>
+					<p>
+						FARM'19: Workshop on Functional Art, Music, Modelling and Design
+						<br>
+						<br>
+						<small>
+							<a href="http://www.cems.uwe.ac.uk/~br-gaster/">Benedict R. Gaster</a> /
+							<a href="http://twitter.com/cuberoo_">@cuberoo_</a>
+							<br>
+							my pronouns are he/him/they or xe/xim/xir
+							<br>
+							<br>
+							<br>
+							a colaboration with <a href="https://people.uwe.ac.uk/Person/NathanRenney">Nathan Renney</a> 
+							and <a href="https://www.uwe.ac.uk/sca/research/cfpr/staff/carinna_parraman/">Carinna Parraman</a>
+						</small>
+						
+					
+					</p>
 				</section>
 				
 				<section>
@@ -83,6 +102,15 @@
 
 				<section>
 					<img 
+						class="plain"
+						src="assets/images/muses_xyv_drawing.png" 
+						alt="virtual pad controller"
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<!-- <section>
+					<img 
 						src="assets/images/audio_graphic.svg" 
 						alt="audio graphic" />
 				</section>
@@ -95,7 +123,7 @@
 					<img 
 						src="assets/images/layout_garphic.svg" 
 						alt="interface layout" />
-				</section>
+				</section> -->
 				<section>
 						<img 
 							src="assets/images/action-to-sound.svg" 
@@ -107,13 +135,19 @@
 							alt="mpc interface" 
 							style="background:none; border:none;" />
 				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/system_architecture.svg" 
+						alt="system flow diagram"
+						style="background:none; border:none;"
+						width="40%" />
+				</section>
+
 				<section data-markdown>
 						<textarea data-template>
 							### A Little Programming Language
-
-							An Extended SVG Domain Specifc Language
-
-							 Embedded into Haskell
 						</textarea>
 				</section>
 				<section>
@@ -151,23 +185,54 @@
 				</section>
 
 				<section>
-						Define an interface
-						<pre>
-							<code data-trim data-noescape class="language-haskell">
-								interface = 
-									stop ! #x 167 ! #y 20 ! #size 25
-									<>
-									play ! #v1 (162 ,32) ! #v2 (142 ,20) ! #v3 (142 ,45)
-									<>
-									record ! #x 209 ! #y 32 ! #r 12
-							</code>
-						</pre>
-					</section>
+					Define an interface
+					<pre>
+						<code data-trim data-noescape class="language-haskell">
+							interface = 
+								stop ! #x 167 ! #y 20 ! #size 25
+								<>
+								play ! #v1 (162 ,32) ! #v2 (142 ,20) ! #v3 (142 ,45)
+								<>
+								record ! #x 209 ! #y 32 ! #r 12
+						</code>
+					</pre>
+				</section>
 
+				<section>
+					Domain specific controllers
+					<pre>
+						<code data-trim data-noescape class="language-haskell">
+							pad :: "x":!Int -> "y":!Int -> "size":!Int -> "address":!Text -> Controller
+
+							toggle :: "x":!Int -> "y":!Int -> "size":!Int -> "address":!Text -> Controller
+							
+							horzSlider :: "x" :! Int -> "y" :! Int -> "width" :! Int -> "height" :! Int -> 
+									"min" :! Int -> "max" :! Int -> "address" :! Text -> Controller
+
+							vertSlider :: "x" :! Int -> "y" :! Int -> "width" :! Int -> "height" :! Int -> 
+									"min" :! Int -> "max" :! Int -> "address" :! Text -> Controller
+
+							ciPad :: "x":!Int -> "y":!Int -> "r":!Int -> "address":!Text -> Controller
+							
+							endless :: "cx" :! Int -> "cy" :! Int -> "or" :! Int -> "ir" :! Int -> 
+									"address" :! Text -> Controller
+						</code>
+					</pre>
+				</section>
+			
 				<section data-markdown>
 					<textarea data-template>
 						### SVG Representation
 					</textarea>
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/system_architecture_svg-creator.svg" 
+						alt="system flow diagram"
+						style="background:none; border:none;"
+						width="40%" />
 				</section>
 
 				<section>
@@ -179,22 +244,35 @@
 				</section>
 
 				<section>
+					SVG Controller Representation
+					<pre>
+						<code data-trim data-noescape class="language-haskell">
+							rect :: "x":!Int -> "y":!Int -> "width":!Int -> "height":!Int -> Controller
+
+							circle :: "x" :! Int -> "y" :! Int -> "r" :! Int -> Controller
+							
+							polygon :: "points" :! [(Int,Int)] -> Controller
+						</code>
+					</pre>
+				</section>
+
+				<section>
 					<pre>
 						<code data-trim>
-							< svg xmlns="http://www.w3.org/2000/svg" height="140mm" viewBox="0 0 240 140" 
+							&ltsvg xmlns="http://www.w3.org/2000/svg" height="140mm" viewBox="0 0 240 140" 
 							 width="240mm" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.11.1" 
-							 interface_device="sensel" >
+							 interface_device="sensel"&gt
 							 
-							 < rect interface_osc_address="/play" height="25" interface_type="pad" 
-							   width="25" x="167" y="20"/ >
+								&ltrect interface_osc_address="/play" height="25" interface_type="pad" 
+							   		width="25" x="167" y="20"/&gt
 							 
-							   < polygon interface_osc_address="/play" points="162 32 142 20 142 45 162 32" 
-							   interface_type="pad"/ >
+							&ltpolygon interface_osc_address="/play" points="162 32 142 20 142 45 162 32" 
+							   interface_type="pad"/&gt
 
-							 < circle interface_osc_address="/record" interface_type="pad" cy="32" r="12" 
-							   cx="209"/ >
+							&ltcircle interface_osc_address="/record" interface_type="pad" cy="32" r="12" 
+							   cx="209"/&gt
 
-							< svg>
+							&ltsvg/&gt
 						</code>
 					</pre>
 				</section>
@@ -205,10 +283,13 @@
 					</textarea>
 				</section>
 
-				<section data-markdown>
-						<textarea data-template>
-							insert figure showing SVG -> JSON
-						</textarea>
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/system_architecture_svg-interface.svg" 
+						alt="system flow diagram"
+						style="background:none; border:none;"
+						width="40%" />
 				</section>
 
 				<section>
@@ -219,11 +300,19 @@
 						style="background:none; border:none;"
 						width="50%" />
 				</section>
+
 				<section>
 					<img 
 						src="assets/images/mpc-wireframe.png" 
 						alt="mpc wireframe"
 						width="75%" />
+				</section>
+
+				<section>
+						<img 
+							src="assets/images/mpc-rasterized-lowres.png" 
+							alt="mpc wireframe"
+							width="75%" />
 				</section>
 
 				<section data-markdown>
@@ -232,10 +321,78 @@
 						</textarea>
 				</section>
 
-				<section data-markdown>
-						<textarea data-template>
-							JSON -> Sensel, ROLI (Littlefoot)
-						</textarea>
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/system_architecture_device-backends.svg" 
+						alt="system flow diagram"
+						style="background:none; border:none;"
+						width="40%" />
+				</section>
+
+				<section>
+					<pre>
+						<code data-trim>
+							{"controllers" : [ {
+								"type_id" : "pad", "id" : 1, "rgb" : "rgb(217,137,188)",
+								"args" : [ 100 ], "address" : "/midicc"	}, ... ],
+								"buffer" : [ [
+								    1,1,1,0,2,2,2,0,3,3,3,0,4,4,4,
+								    1,1,1,0,2,2,2,0,3,3,3,0,4,4,4,
+								    1,1,1,0,2,2,2,0,3,3,3,0,4,4,4,
+								    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,	] ], "interface" : "lightpad" }
+						</code>
+					</pre>
+				</section>
+
+				<!-- <section>
+					<img 
+						class="plain"
+						src="assets/images/system_architecture_device-backends_block_sensel.svg" 
+						alt="system flow diagram"
+						style="background:none; border:none;"
+						width="40%" />
+				</section> -->
+
+				<section>
+					<p><a href="https://sensel.com/pages/the-sensel-morph">Sensel Morph</a></p>
+					<img 
+						class="plain"
+						src="assets/images/sensel_morph.jpg" 
+						alt="sensel morph"
+						style="background:none; border:none;" 
+						width="40%" />
+						<p>
+							Pressure based touch sensor, with 20,000 pressure sensors
+							<br>
+							C driver API for communicating over USB
+						</p>
+				</section>
+
+				<section>
+						<p><a href="https://roli.com/products/blocks">ROLI Lightpad</a></p>
+						<img 
+							class="plain"
+							src="assets/images/roli_block.jpg" 
+							alt="roli lightpad"
+							style="background:none; border:none;" 
+							width="40%" />
+							<p>
+								Pressure based touch sensor, with 15x15 matrix of bright RGB LEDS
+								<br>
+								Programmable with (C like) Littlefoot DSL
+							</p>
 				</section>
 
 				<section>
@@ -255,6 +412,17 @@
 						alt="muses screenshot"
 						width="75%" />
 				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/lotm-basic-channel-t.png" 
+						style="background:none; border:none;"
+						alt="muses screenshot"
+						width="75%" />
+				</section>
+
+				
 
 				<section>
 					More information @project site
