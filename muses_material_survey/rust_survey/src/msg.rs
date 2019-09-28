@@ -121,6 +121,14 @@ pub fn press(circle: f32, ring: f32) -> Message {
     })
 }
 
+pub fn slider(user_x: f32, box_x: f32) -> Message {
+    json!({
+        "type": "slider",
+        "user_x": user_x,
+        "box_x": box_x,
+    })
+}
+
 pub fn materialIndex(index: u32, slide: u32) -> Message {
     json!({
         "type": "materialIndex",
@@ -175,6 +183,10 @@ pub fn gotoOrderFavorite() -> Message {
     gotoSlide(order_favorite_num())
 }
 
+pub fn gotoSlider() -> Message {
+    gotoSlide(slider_num())
+}
+
 pub fn front_matter_num() -> u32 {
     0
 }
@@ -207,4 +219,7 @@ pub fn order_favorite_num() -> u32 {
     7
 }
 
+pub fn slider_num() -> u32 {
+    8
+}
 

@@ -19,6 +19,23 @@ use crate::world;
 
 use std::io::prelude::*;
 
+//-----------------------------------------------------------------------------
+// Utils
+//-----------------------------------------------------------------------------
+
+fn round (f: f32) -> f32 {
+    f.floor() + 0.5
+}
+
+fn range(output_start: f32, output_end: f32, input_start: f32, input_end: f32, input: f32) -> f32 {
+    let slope = 1.0 * (output_end - output_start) / (input_end - input_start);
+    output_start + round(slope * (input - input_start))
+} 
+
+//-----------------------------------------------------------------------------
+// SLIDES
+//-----------------------------------------------------------------------------
+
 pub trait Slide {
     fn run(&self,
         world: &mut world::World,
@@ -28,7 +45,7 @@ pub trait Slide {
 }
 
 //-----------------------------------------------------------------------------
-// SLIDES
+// Frontmatter
 //-----------------------------------------------------------------------------
 
 /// Front page of survey presentation
@@ -178,15 +195,6 @@ impl Press {
             tolerance: tolerance,
         }
     }
-
-    fn round (f: f32) -> f32 {
-        f.floor() + 0.5
-    }
-
-    fn range(output_start: f32, output_end: f32, input_start: f32, input_end: f32, input: f32) -> f32 {
-        let slope = 1.0 * (output_end - output_start) / (input_end - input_start);
-        output_start + Press::round(slope * (input - input_start))
-    } 
 }
 
 
@@ -218,8 +226,6 @@ impl Slide for Press {
         let mut circle_ring_radius: Vec<(f32, f32)> = vec![(circle_radius, ring_radius)];
         let mut num_presses = 0;
 
-        let foo = overall_timer.elapsed().as_millis();
-
         // pressure input, until time is done
         while overall_timer.elapsed().as_secs() < self.duration {
             
@@ -227,7 +233,7 @@ impl Slide for Press {
                 Ok((input_type, pressure, x, y, material)) => {
                     if material == self.material {
                         // map pressure into range and then send radius to frontend
-                        let circle_radius = Press::range(
+                        let circle_radius = range(
                             Press::OUTPUT_START, 
                             Press::OUTPUT_END, 
                             Press::INPUT_START, 
@@ -266,6 +272,138 @@ impl Slide for Press {
             }
         }
         world.writeGesture("press".to_string(), self.material, circle_ring_radius, data);
+    }
+}
+
+//-----------------------------------------------------------------------------
+// Slider gesture
+//
+// The implementation is very similar to press, but we are now dealing with 
+// horx movements, rather than pressure, and the animation is different.
+//-----------------------------------------------------------------------------
+
+/// Slider page of survey presentation
+pub struct Slider {
+    /// material index
+    material: u32,
+    /// duration to test
+    duration: u64,
+    tolerance: f32,
+    /// top left x of the pad
+    top_left_x: f32,
+    /// top left y of the pad
+    top_left_y: f32,
+    /// width of pad
+    width: f32,
+    /// height of pad
+    height: f32,
+}
+
+impl Slider {
+    const MIN_X: f32       = 50.0;
+    const MAX_X: f32       = 650.0;
+    const USER_X_SIZE: f32 = 20.0;
+    const BOX_X_SIZE:  f32 = 60.0; 
+    const STEP_SIZE: f32   = 2.0;
+
+    pub fn new(
+        material: u32, 
+        duration: u64, 
+        tolerance: f32,
+        top_left_x: f32,
+        top_left_y: f32,
+        width: f32,
+        height: f32,) -> Self {
+        Slider {
+            material: material,
+            duration: duration,
+            tolerance: tolerance,
+            top_left_x: top_left_x,
+            top_left_y: top_left_y,
+            width: width,
+            height: height,
+        }
+    }
+}
+
+impl Slide for Slider { 
+    fn run(&self, 
+        world: &mut world::World,
+        inbound_osc: &Receiver<msg::SenselMessage>,
+        outbound_msg: &ws_server::WSServer, 
+        inbound_msg:  &Receiver<msg::Message>) {
+
+        // jump to frontmatter page
+        outbound_msg.send(msg::materialIndex(self.material, msg::slider_num()));
+        outbound_msg.send(msg::gotoSlider());
+
+        // random number generator for direction and placement of box
+        let mut rng = rand::thread_rng();
+
+        let mut direction: f32 = rng.gen();
+        direction = if direction > 90.0 { Slider::STEP_SIZE } else { -1.0 * Slider::STEP_SIZE };
+
+        let mut user_x = rng.gen_range(Slider::MIN_X, Slider::MAX_X-Slider::USER_X_SIZE);
+        
+        let mut box_x = (rng.gen_range(Slider::MIN_X, Slider::MAX_X-Slider::BOX_X_SIZE) as u32) as f32;
+        box_x = Slider::MIN_X;
+        let mut box_old_x = box_x;
+
+        // place box and user box in initial positions 
+        outbound_msg.send(msg::slider(user_x, box_x));
+
+        // track if touch is causing circle radius ~ ring radius, within a given tolerance
+        let mut tolerance_timer = Instant::now();
+        let mut within_tolerance = false;
+
+        // timer for time stamps outputs
+        let overall_timer  = Instant::now();
+        
+        // let mut data: Vec<world::PressContacts> = vec![vec![]]; 
+        // let mut circle_ring_radius: Vec<(f32, f32)> = vec![(circle_radius, ring_radius)];
+        // let mut num_presses = 0;
+
+        // timer to control animation FPS
+        let mut animation_timer = Instant::now();
+
+        // time animation and responses
+        while overall_timer.elapsed().as_secs() < self.duration {   
+            match inbound_osc.try_recv() {
+                Ok((input_type, pressure, x, y, material)) => {
+                    if material == self.material {
+                        // update user box postion with respect to sensel input
+                        user_x = range(
+                            Slider::MIN_X,
+                            Slider::MAX_X - Slider::USER_X_SIZE,
+                            self.top_left_x,
+                            self.top_left_x + self.width, 
+                            x);
+                    }
+                },
+                _ => {}
+            }
+
+            // update box and its direction @60hz
+            if animation_timer.elapsed().as_millis() > 16 {
+                box_x = box_x + direction;
+
+                // clamp within animation range and change direction of box if at boundary
+                if box_x + Slider::BOX_X_SIZE >= Slider::MAX_X  {
+                    direction = -1.0 * Slider::STEP_SIZE;
+                    box_x = Slider::MAX_X - Slider::BOX_X_SIZE;
+                }
+                else if box_x <= Slider::MIN_X {
+                    direction = Slider::STEP_SIZE;
+                    box_x = Slider::MIN_X;
+                }
+
+                // reset timer
+                animation_timer = Instant::now();
+
+                // update view
+                outbound_msg.send(msg::slider(user_x, box_x));
+            }            
+        }
     }
 }
 

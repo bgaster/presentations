@@ -64,9 +64,17 @@ Set the radius of circle and ring of press animation.
 { "type": "press", "circle": "number", "ring": "number"}
 ```
 
+#### Slider
+
+Set user and box position of slider animation.
+
+```javascript
+{ "type": "slider", "user_x": "number", "user_y": "number", "box_x": "number", "box_y": "number"}
+```
+
 #### Material Type
 
-Set the current material type.
+Set the current material type of Likert.
 
 ```javascript
 { "type": "materialIndex", "value": "number", "slide": "number"}
@@ -102,4 +110,5 @@ Slide numbers are defined as follows:
    * 5 - Please touch the material you felt was the most comfortable to use
    * 6 - Please touch the material you felt was the most responsive
    * 7 - Please order the materials according to your preferences
+   * 8 - Slider
    * X - Closing matter

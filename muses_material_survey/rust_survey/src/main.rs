@@ -121,7 +121,8 @@ fn main() {
 
     let mut slides: Vec<Box<slide::Slide>> = vec![
         Box::new(slide::FrontMatter::new()),
-        Box::new(slide::Press::new(1, 20, 2.0)),
+        Box::new(slide::Slider::new(1, 20, 2.0, 30.0, 30.0, 30.0, 30.0)),
+        //Box::new(slide::Press::new(1, 20, 2.0)),
     ];
 
 

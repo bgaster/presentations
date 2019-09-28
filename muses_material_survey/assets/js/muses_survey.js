@@ -20,6 +20,10 @@ var ws;
 
 const likertSlideNumber = 2;
 const pressSlideNumber  = 3;
+const sliderSlideNumber = 8;
+
+var box_x = 20.0;
+var user_x = 20.0;
 
 (function(window) {
     /**
@@ -28,6 +32,8 @@ const pressSlideNumber  = 3;
      */
     if ("WebSocket" in window) {
 	     console.log("Initializing Muses Survey Plugin...")
+
+       window.requestAnimationFrame(updateSlider);
 
 	      // open up remote server
         ws = new WebSocket('ws://localhost:8080');
@@ -50,6 +56,13 @@ const pressSlideNumber  = 3;
               // draw press circle and ring
               updatePressCircle(data.circle, data.ring);
             }
+            else if (data.type == "slider") {
+              // draw slider canvas
+              user_x = data.user_x;
+              box_x  = data.box_x;
+
+              //updateSlider(data.user_x, data.box_x);
+            }
             else if (data.type == "consentID") {
               document.getElementById("consent-id").innerHTML = data.id;
             }
@@ -60,6 +73,9 @@ const pressSlideNumber  = 3;
                 }
                 else if (data.slide == pressSlideNumber) {
                   document.getElementById("materialIndexPress").innerHTML = data.value;
+                }
+                else if (data.slide == sliderSlideNumber) {
+                  document.getElementById("materialIndexSlider").innerHTML = data.value;
                 }
             }
             else if (data.type == "gestureType") {
@@ -155,4 +171,47 @@ function updatePressCircle(circleRadius, ringRadius) {
   contextPressCircle.lineWidth = 5;
   contextPressCircle.arc(200, 200, ringRadius, 0, 2 * Math.PI);
   contextPressCircle.stroke();   
+}
+
+//------------------------------------------------------------------------------
+// canvas for slider 
+//------------------------------------------------------------------------------
+
+// a few globals for pressCircle
+var canvasSlider    = document.getElementById('sliderCanvas');
+canvasSlider.width  = 750;
+canvasSlider.height = 400;
+var contextSlider = canvasSlider.getContext('2d');
+
+// draw press circle and ring
+function updateSlider() {
+  // clear canvas
+  contextSlider.clearRect(0, 0, 750, 400);
+
+  // draw line
+  contextSlider.beginPath();
+  contextSlider.moveTo(30, 200);
+  contextSlider.lineTo(750, 200);
+  contextSlider.lineWidth = 5;
+  contextSlider.stroke();
+
+  // draw user box
+  contextSlider.beginPath();
+  contextSlider.rect(user_x, 180, 20, 40);
+  contextSlider.fillStyle = '#D989BC';
+  contextSlider.fill();
+  
+  // draw box
+  contextSlider.globalAlpha = 0.5;
+  contextSlider.beginPath();
+  contextSlider.rect(box_x, 170, 150, 60);
+  contextSlider.fillStyle = '#F3B73B';
+  contextSlider.fill();
+  contextSlider.globalAlpha = 1.0;
+
+  // '#F3B73B'
+  //contextPressCircle.fillStyle = '#D989BC';
+  //contextPressCircle.fill();
+
+  window.requestAnimationFrame(updateSlider);
 }
