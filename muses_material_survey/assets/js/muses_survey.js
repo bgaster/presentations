@@ -22,8 +22,10 @@ const likertSlideNumber = 2;
 const pressSlideNumber  = 3;
 const sliderSlideNumber = 8;
 
+// Globals for slider animation
 var box_x = 20.0;
 var user_x = 20.0;
+var box_size = 150.0;
 
 (function(window) {
     /**
@@ -60,6 +62,7 @@ var user_x = 20.0;
               // draw slider canvas
               user_x = data.user_x;
               box_x  = data.box_x;
+              box_size = data.box_size;
 
               //updateSlider(data.user_x, data.box_x);
             }
@@ -204,7 +207,7 @@ function updateSlider() {
   // draw box
   contextSlider.globalAlpha = 0.5;
   contextSlider.beginPath();
-  contextSlider.rect(box_x, 170, 150, 60);
+  contextSlider.rect(box_x, 170, box_size, 60);
   contextSlider.fillStyle = '#F3B73B';
   contextSlider.fill();
   contextSlider.globalAlpha = 1.0;

@@ -121,11 +121,12 @@ pub fn press(circle: f32, ring: f32) -> Message {
     })
 }
 
-pub fn slider(user_x: f32, box_x: f32) -> Message {
+pub fn slider(user_x: f32, box_x: f32, box_size: f32) -> Message {
     json!({
         "type": "slider",
         "user_x": user_x,
         "box_x": box_x,
+        "box_size": box_size
     })
 }
 

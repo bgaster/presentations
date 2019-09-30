@@ -41,6 +41,7 @@ const muses_config: &'static str = "./assets/config.json";
 struct Config {
     id: u32,
     csv: String,
+    likert_dir: String,
 }
 
 fn main() {
@@ -63,16 +64,18 @@ fn main() {
     // Deserialize config
     let mut config : Config  = serde_json::from_str(&config).expect("Invalid config file");
 
-    let mut file = OpenOptions::new()
+    let likert_cvs = format!("{}{}.csv", config.likert_dir.clone(), config.id.to_string());
+    let mut likert_file = OpenOptions::new()
         .write(true)
-        .append(true)
-        .open(config.csv.clone())
+        //.append(true)
+        .create(true)
+        .open(likert_cvs)
         .unwrap();
 
     // add a new line to the CSV file, just to make sure we start on a new line
-    writeln!(file, "\n");
+    //writeln!(file, "\n");
 
-    let mut world = world::World::new(config.id, file);
+    let mut world = world::World::new(config.id, likert_file);
 
     // update id to next free and update config file
     config.id = config.id + 1;
@@ -119,10 +122,27 @@ fn main() {
         _ => {},
     }
 
+    // let mut slides: Vec<Box<slide::Slide>> = vec![
+    //     Box::new(slide::FrontMatter::new()),
+    //     //Box::new(slide::Consent::new()),
+    //     Box::new(slide::Slider::new(1, 20, 2.0, 30.0, 30.0, 30.0, 30.0)),
+    //     //Box::new(slide::Press::new(1, 20, 2.0)),
+    // ];
+
     let mut slides: Vec<Box<slide::Slide>> = vec![
         Box::new(slide::FrontMatter::new()),
-        Box::new(slide::Slider::new(1, 20, 2.0, 30.0, 30.0, 30.0, 30.0)),
-        //Box::new(slide::Press::new(1, 20, 2.0)),
+        Box::new(slide::Consent::new()),
+        Box::new(slide::Likert::new(1, "Tap".to_string())),
+        Box::new(slide::Likert::new(1, "Press".to_string())),
+        Box::new(slide::Likert::new(1, "Slider".to_string())),
+        Box::new(slide::Likert::new(2, "Tap".to_string())),
+        Box::new(slide::Likert::new(2, "Press".to_string())),
+        Box::new(slide::Likert::new(2, "Slider".to_string())),
+        Box::new(slide::Likert::new(3, "Tap".to_string())),
+        Box::new(slide::Likert::new(3, "Press".to_string())),
+        Box::new(slide::Likert::new(3, "Slider".to_string())),
+    
+        //Box::new(slide::Press::new(1, 10)),
     ];
 
 

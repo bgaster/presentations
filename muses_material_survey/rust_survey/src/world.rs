@@ -10,7 +10,7 @@ extern crate csv;
 
 use crate::msg;
 
-pub type PressContacts = Vec<(u128, f32, f32, f32)>;
+pub type Contacts = Vec<(u128, f32, f32, f32)>;
 
 pub struct PressData {
     /// radius of circle at start
@@ -18,19 +18,26 @@ pub struct PressData {
     /// radius of ring
     pub ring_radius: f32,
     /// contacts record timestamp, pressure, x, and y
-    pub contacts: PressContacts,
+    pub contacts: Contacts,
     /// did the user complete the press test for given params
     pub success: bool,
 }
 
+///
 pub struct World {
     pub id: u32,
+    /// likert CSV file
     pub csv: csv::Writer<File>,
 }
 
 impl World {
-    pub fn new(id: u32, file: File) -> Self {
-        let csv = csv::Writer::from_writer(file);
+    pub fn new(id: u32, likert_file: File) -> Self {
+
+        // handle Likert CSV files, including writing column headings
+        let mut csv = csv::Writer::from_writer(likert_file);
+        csv.write_record(&["ID", "Category", "Gesture", "Material", "Feeling", "Answer"]);
+        csv.flush().unwrap();
+        
         World {
             id: id,
             csv: csv,
@@ -39,12 +46,19 @@ impl World {
 
     /// create an ID label to be written at front of each new entry in CSV
     fn create_id(&self) -> String {
-        format!("id={}", self.id)
+        format!("{}", self.id)
     }
 
     /// write likert data to CSV
-    pub fn writeLikert(&mut self, likert: msg::Likert) {
-        self.csv.write_record(&[&self.create_id(), &likert.name, &likert.value.to_string()]).unwrap();
+    pub fn writeLikert(&mut self, gesture: &str, material: &str, likert: msg::Likert) {
+        let categories = ["Strongly Disagree", "Disagree", "Netural", "Agree", "Strongly Agree"];
+
+        self.csv.write_record(&[
+            &self.create_id(), 
+            categories[(likert.value-1) as usize],
+            gesture, material, 
+            &likert.name, 
+            &likert.value.to_string()]).unwrap();
         self.csv.flush().unwrap();
     }
 
@@ -62,7 +76,7 @@ impl World {
         name: String,
         material: u32,
         circle_ring_radius: Vec<(f32, f32)>,
-        contacts: Vec<PressContacts>) {
+        contacts: Vec<Contacts>) {
         
         for i in 0..circle_ring_radius.len() {
             // id=id, press, material, circleRadius, ringRadius, (timestamp, pressure, x, y), ...
@@ -75,7 +89,7 @@ impl World {
             
             for contact in &contacts[i] {
                 out.push(format!(
-                    "({}{}{}{})", 
+                    "({} - {} - {} - {})", 
                     contact.0.to_string(), 
                     contact.1.to_string(), 
                     contact.2.to_string(),
@@ -88,7 +102,7 @@ impl World {
     }
 
     /// In some cases, when in a loop, for example, we don't want to flush until end of slide.
-    pub fn flushCSV(&mut self) {
+    pub fn flush_CSV(&mut self) {
         self.csv.flush().unwrap();
     }
 }

@@ -156,7 +156,7 @@ impl Slide for Likert {
                 Ok(data) => {
                     match msg::likert(data) {
                         Ok(l) => {
-                            world.writeLikert(l);
+                            world.writeLikert(&self.gesture, &self.material.to_string(), l);
                             msgs_received = msgs_received - 1;
                         },
                         _ => {}
@@ -222,7 +222,7 @@ impl Slide for Press {
 
         let overall_timer  = Instant::now();
         
-        let mut data: Vec<world::PressContacts> = vec![vec![]]; 
+        let mut data: Vec<world::Contacts> = vec![vec![]]; 
         let mut circle_ring_radius: Vec<(f32, f32)> = vec![(circle_radius, ring_radius)];
         let mut num_presses = 0;
 
@@ -303,7 +303,8 @@ impl Slider {
     const MIN_X: f32       = 50.0;
     const MAX_X: f32       = 650.0;
     const USER_X_SIZE: f32 = 20.0;
-    const BOX_X_SIZE:  f32 = 60.0; 
+    const BOX_X_SIZE:  f32 = 150.0;
+    const MIN_BOX_X_SIZE: f32 = Slider::USER_X_SIZE * 3.0;  
     const STEP_SIZE: f32   = 2.0;
 
     pub fn new(
@@ -347,10 +348,10 @@ impl Slide for Slider {
         
         let mut box_x = (rng.gen_range(Slider::MIN_X, Slider::MAX_X-Slider::BOX_X_SIZE) as u32) as f32;
         box_x = Slider::MIN_X;
-        let mut box_old_x = box_x;
+        let mut box_size = Slider::BOX_X_SIZE;
 
         // place box and user box in initial positions 
-        outbound_msg.send(msg::slider(user_x, box_x));
+        outbound_msg.send(msg::slider(user_x, box_x, box_size));
 
         // track if touch is causing circle radius ~ ring radius, within a given tolerance
         let mut tolerance_timer = Instant::now();
@@ -359,9 +360,9 @@ impl Slide for Slider {
         // timer for time stamps outputs
         let overall_timer  = Instant::now();
         
-        // let mut data: Vec<world::PressContacts> = vec![vec![]]; 
-        // let mut circle_ring_radius: Vec<(f32, f32)> = vec![(circle_radius, ring_radius)];
-        // let mut num_presses = 0;
+        let mut data: Vec<world::Contacts> = vec![vec![]]; 
+        let mut box_details: Vec<(f32, f32)> = vec![(box_x, box_size)];
+        let mut num_boxes = 0;
 
         // timer to control animation FPS
         let mut animation_timer = Instant::now();
@@ -378,6 +379,22 @@ impl Slide for Slider {
                             self.top_left_x,
                             self.top_left_x + self.width, 
                             x);
+
+                        data[num_boxes].push((overall_timer.elapsed().as_millis(), pressure, x, y));
+
+                        // is the user box inside the box?
+                        if user_x >= box_x  && user_x+Slider::USER_X_SIZE <= box_x + box_size {
+                            box_size = f32::max(box_size - 0.6, Slider::MIN_BOX_X_SIZE); 
+                            box_x = box_x + if direction < 0.0 { -0.5 } else { 0.5 };
+                            //box_x    = rng.gen_range(Slider::MIN_X, Slider::MAX_X - box_size);
+
+                            //rng.gen_range(Slider::USER_X_SIZE, Slider::BOX_X_SIZE);
+                            //box_x    = rng.gen_range(Slider::MIN_X, Slider::MAX_X - Slider::BOX_X_SIZE);
+                            // update box storage
+                            num_boxes = num_boxes + 1;
+                            data.push(vec![]);
+                            box_details.push((box_x, box_size));
+                        }
                     }
                 },
                 _ => {}
@@ -388,9 +405,9 @@ impl Slide for Slider {
                 box_x = box_x + direction;
 
                 // clamp within animation range and change direction of box if at boundary
-                if box_x + Slider::BOX_X_SIZE >= Slider::MAX_X  {
+                if box_x + box_size >= Slider::MAX_X  {
                     direction = -1.0 * Slider::STEP_SIZE;
-                    box_x = Slider::MAX_X - Slider::BOX_X_SIZE;
+                    box_x = Slider::MAX_X - box_size;
                 }
                 else if box_x <= Slider::MIN_X {
                     direction = Slider::STEP_SIZE;
@@ -401,9 +418,11 @@ impl Slide for Slider {
                 animation_timer = Instant::now();
 
                 // update view
-                outbound_msg.send(msg::slider(user_x, box_x));
+                outbound_msg.send(msg::slider(user_x, box_x, box_size));
             }            
         }
+
+        world.writeGesture("slider".to_string(), self.material, box_details, data);
     }
 }
 

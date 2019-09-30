@@ -2,15 +2,45 @@
 
 Currently the following survey page types are supported:
 
-   * 
+   * Front matter
+   * Consent
    * Likert 
    * Press, aimed at capturing a material press for pressure
+   * Slider, aimed at capturing movements across the material
+   * Reponses
 
-TODO:
+# Config
 
-   * Concent page
-   * TAP
-   * XXX
+There is a single config.json file, which contains the following fields:
+
+```javascript
+  {
+     "id": "number",
+     "likert_dir": "string",
+     "gesture_dir": "string",
+     "responses_dir": "string",
+  }
+```
+   * id - is the next unique ID given to each participant
+   * likert_dir - directory for Likert CSV files
+   * gesture_dir - directory for Gesture CSV files
+   * responses_dir - directory for Responses CSV files
+
+# CSV Representation of Results
+
+All data is stored in CSV files. Corresponding to each of the path enteries in the previous section,
+we then have for each survey:
+
+	* likert/ID.csv           - Likert results for the survey with ID
+	* gestures/ID.csv.    - Gesture results for the survey with ID (including all touch information)
+	* responses/ID.csv  -  Response results for the survey with ID
+
+# TODO:
+
+   * Tap
+   * Gesture CSV
+   * Response CSV
+   * Visualization of Likert with R
 
 # PROTOCOL
 
@@ -112,3 +142,7 @@ Slide numbers are defined as follows:
    * 7 - Please order the materials according to your preferences
    * 8 - Slider
    * X - Closing matter
+
+# CSV Format
+
+ id=id, press, material, circleRadius, ringRadius, (timestamp, pressure, x, y), ...
