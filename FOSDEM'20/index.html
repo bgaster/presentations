@@ -1,0 +1,710 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="../css/reset.css">
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="assets/css/steven.css">
+		
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../farm19/assets/css/muses-hightlight.css">
+		<!-- link rel="stylesheet" href="build/styles/darkula.min.css" -->
+
+		<!-- script src="assets/js/snap.svg-min.js"></script -->
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<!-- The following enable the themes border-->
+		<div class="line top"></div>
+		<div class="line bottom"></div>
+		<div class="line left"></div>
+		<div class="line right"></div>
+
+		<div class="reveal">
+			<div class="slides">
+				<section 
+					data-separator="^\n\n\n"
+					data-separator-vertical="^\n\n"
+					data-separator-notes="^Note:"
+					data-charset="iso-8859-15"
+					data-background="assets/images/layout_graphic_action_script.svg">
+					<h1>Rusty Instruments	</h1>
+					<p>
+						FOSDEM'20: Rust when it makes sense
+						<br>
+						<br>
+						<small>
+							<a href="http://www.cems.uwe.ac.uk/~br-gaster/">Benedict R. Gaster</a> /
+							<a href="http://twitter.com/cuberoo_">@cuberoo_</a>
+							<br>
+							my pronouns are he/him/they or xe/xim/xir
+						</small>
+					</p>
+				</section>
+
+				<section>
+						<img 
+							class="plain"
+							src="assets/images/instruments_no_bela.png" 
+							alt="controllers" 
+							style="background:none; border:none;"
+							width="100%" />
+				</section>
+				
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/instruments.png" 
+						alt="controllers" 
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/controller_examples.png" 
+						alt="controllers" 
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/custom_controller_examples.png" 
+						alt="controllers" 
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/organelle.jpg" 
+						alt="organelle"
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/bbc_basic.jpg" 
+						alt="bcc basic"
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/6502.jpg" 
+						alt="6502"
+						style="background:none; border:none;"
+						width="30%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/c_book.jpg" 
+						alt="C book"
+						style="background:none; border:none;"
+						width="40%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/bash_logo.png" 
+						alt="C book"
+						style="background:none; border:none;"
+						width="60%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/Haskell-Logo.png" 
+						alt="haskell logo"
+						style="background:none; border:none;"
+						width="50%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/c++_logo.jpg" 
+						alt="C++ book"
+						style="background:none; border:none;"
+						width="60%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/opengl_logo.png" 
+						alt="OpenGL logo"
+						style="background:none; border:none;"
+						width="60%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/opencl_logo.jpg" 
+						alt="OpenCL logo"
+						style="background:none; border:none;"
+						width=40%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/npm.png" 
+						alt="npm"
+						style="background:none; border:none;"
+						width=40%" />
+					<img 
+						class="plain"
+						src="assets/images/cabal.png" 
+						alt="cabal"
+						style="background:none; border:none;"
+						width=45%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/c++_logo.jpg" 
+						alt="C++ book"
+						style="background:none; border:none;"
+						width="50%" />
+					<img 
+						class="plain"
+						src="assets/images/Haskell-Logo.png" 
+						alt="haskell logo"
+						style="background:none; border:none;"
+						width="40%" />
+				</section>
+				
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/square_peg_in_round_hole.jpg" 
+						alt="square peg"
+						style="background:none; border:none;"
+						width=60%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/fosdem_2015.png" 
+						alt="fosdem"
+						style="background:none; border:none;"
+						width=60%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/rust_logo.png" 
+						alt="rust"
+						style="background:none; border:none;"
+						width=40%" />
+				</section>
+
+				<!-- <section>
+					<img 
+						src="assets/images/audio_graphic.svg" 
+						alt="audio graphic" />
+				</section>
+				<section>
+					<img 
+						src="assets/images/control_graphic.svg" 
+						alt="interfadce control" />
+				</section>
+				<section>
+					<img 
+						src="assets/images/layout_garphic.svg" 
+						alt="interface layout" />
+				</section> -->
+				<section>
+						<img 
+							src="assets/images/action-to-sound.svg" 
+							alt="action to sound" />
+				</section>
+				<section>
+						<img 
+							src="assets/images/mpc.svg" 
+							alt="mpc interface" 
+							style="background:none; border:none;" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/system_architecture.svg" 
+						alt="system flow diagram"
+						style="background:none; border:none;"
+						width="40%" />
+				</section>
+
+				<section data-markdown>
+						<textarea data-template>
+							### A Little Programming Language
+						</textarea>
+				</section>
+				<section>
+						<img 
+							src="assets/images/mpc-play-stop-record.svg" 
+							alt="mpc interface" />
+				</section>
+				<section>
+					<pre>
+						<code data-trim data-noescape>
+							stop ! #x 10 ! #y 10 ! #size 3
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<pre>
+						<code data-trim data-noescape>
+								pad ! #x 10 ! #y 10 ! #size 3 ! #address "/stop/"
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					Compose controllers to form 'interfaces'
+					<pre>
+						<code data-trim data-noescape class="language-haskell">
+							stop ! #x 167 ! #y 20 ! #size 25
+							<>
+							play ! #v1 (162 ,32) ! #v2 (142 ,20) ! #v3 (142 ,45)
+							<>
+							record ! #x 209 ! #y 32 ! #r 12
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					Define an interface
+					<pre>
+						<code data-trim data-noescape class="language-haskell">
+							interface = 
+								stop ! #x 167 ! #y 20 ! #size 25
+								<>
+								play ! #v1 (162 ,32) ! #v2 (142 ,20) ! #v3 (142 ,45)
+								<>
+								record ! #x 209 ! #y 32 ! #r 12
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					Domain specific controllers
+					<pre>
+						<code data-trim data-noescape class="language-haskell">
+							pad :: "x":!Int -> "y":!Int -> "size":!Int -> "address":!Text -> Controller
+
+							toggle :: "x":!Int -> "y":!Int -> "size":!Int -> "address":!Text -> Controller
+							
+							horzSlider :: "x" :! Int -> "y" :! Int -> "width" :! Int -> "height" :! Int -> 
+									"min" :! Int -> "max" :! Int -> "address" :! Text -> Controller
+
+							vertSlider :: "x" :! Int -> "y" :! Int -> "width" :! Int -> "height" :! Int -> 
+									"min" :! Int -> "max" :! Int -> "address" :! Text -> Controller
+
+							ciPad :: "x":!Int -> "y":!Int -> "r":!Int -> "address":!Text -> Controller
+							
+							endless :: "cx" :! Int -> "cy" :! Int -> "or" :! Int -> "ir" :! Int -> 
+									"address" :! Text -> Controller
+						</code>
+					</pre>
+				</section>
+			
+				<section data-markdown>
+					<textarea data-template>
+						### SVG Representation
+					</textarea>
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/system_architecture_svg-creator.svg" 
+						alt="system flow diagram"
+						style="background:none; border:none;"
+						width="40%" />
+				</section>
+
+				<section>
+					<pre>
+						<code data-trim data-noescape>
+								rect 167 20 25 25 # itype ipad # iaddress "/stop/"
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					SVG Controller Representation
+					<pre>
+						<code data-trim data-noescape class="language-haskell">
+							rect :: "x":!Int -> "y":!Int -> "width":!Int -> "height":!Int -> Controller
+
+							circle :: "x" :! Int -> "y" :! Int -> "r" :! Int -> Controller
+							
+							polygon :: "points" :! [(Int,Int)] -> Controller
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<pre>
+						<code data-trim>
+							&ltsvg xmlns="http://www.w3.org/2000/svg" height="140mm" viewBox="0 0 240 140" 
+							 width="240mm" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.11.1" 
+							 interface_device="sensel"&gt
+							 
+								&ltrect interface_osc_address="/play" height="25" interface_type="pad" 
+							   		width="25" x="167" y="20"/&gt
+							 
+							&ltpolygon interface_osc_address="/play" points="162 32 142 20 142 45 162 32" 
+							   interface_type="pad"/&gt
+
+							&ltcircle interface_osc_address="/record" interface_type="pad" cy="32" r="12" 
+							   cx="209"/&gt
+
+							&ltsvg/&gt
+						</code>
+					</pre>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### IR Compilation
+					</textarea>
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/system_architecture_svg-interface.svg" 
+						alt="system flow diagram"
+						style="background:none; border:none;"
+						width="40%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/pipeline.svg" 
+						alt="pipeline"
+						style="background:none; border:none;"
+						width="50%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/lyon_logo.svg" 
+						style="background:none; border:none;"
+						alt="lyon"
+						width="50%" />
+					<h3>by Nicolas Silva</h3>
+				</section>
+
+				<section>
+					<img 
+						src="assets/images/mpc-wireframe.png" 
+						alt="mpc wireframe"
+						width="75%" />
+				</section>
+
+				<section>
+						<img 
+							src="assets/images/mpc-rasterized-lowres.png" 
+							alt="mpc wireframe"
+							width="75%" />
+				</section>
+
+				<section data-markdown>
+						<textarea data-template>
+							### Device Compilation
+						</textarea>
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/system_architecture_device-backends.svg" 
+						alt="system flow diagram"
+						style="background:none; border:none;"
+						width="40%" />
+				</section>
+
+				<section>
+					<pre>
+						<code data-trim>
+							{"controllers" : [ {
+								"type_id" : "pad", "id" : 1, "rgb" : "rgb(217,137,188)",
+								"args" : [ 100 ], "address" : "/midicc"	}, ... ],
+								"buffer" : [ [
+								    1,1,1,0,2,2,2,0,3,3,3,0,4,4,4,
+								    1,1,1,0,2,2,2,0,3,3,3,0,4,4,4,
+								    1,1,1,0,2,2,2,0,3,3,3,0,4,4,4,
+								    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,
+								    5,5,5,0,6,6,6,0,7,7,7,0,8,8,8,	] ], "interface" : "lightpad" }
+						</code>
+					</pre>
+				</section>
+
+				<!-- <section>
+					<img 
+						class="plain"
+						src="assets/images/system_architecture_device-backends_block_sensel.svg" 
+						alt="system flow diagram"
+						style="background:none; border:none;"
+						width="40%" />
+				</section> -->
+
+				<section>
+					<p><a href="https://sensel.com/pages/the-sensel-morph">Sensel Morph</a></p>
+					<img 
+						class="plain"
+						src="assets/images/sensel_morph.jpg" 
+						alt="sensel morph"
+						style="background:none; border:none;" 
+						width="40%" />
+						<p>
+							Pressure based touch sensor, with 20,000 pressure sensors
+							<br>
+							C driver API for communicating over USB
+						</p>
+				</section>
+
+				<section>
+						<p><a href="https://roli.com/products/blocks">ROLI Lightpad</a></p>
+						<img 
+							class="plain"
+							src="assets/images/roli_block.jpg" 
+							alt="roli lightpad"
+							style="background:none; border:none;" 
+							width="40%" />
+							<p>
+								Pressure based touch sensor, with 15x15 matrix of bright RGB LEDS
+								<br>
+								Programmable with (C like) Littlefoot DSL
+							</p>
+				</section>
+
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/muses-screen-shot.png" 
+						style="background:none; border:none;"
+						alt="muses screenshot"
+						width="75%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/faust_logo.jpg" 
+						style="background:none; border:none;"
+						alt="fast"
+						width="30%" />
+						<p>
+							Faust (Functional Audio Stream) is a functional 
+							programming language for sound synthesis and audio processing
+						</p>
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/process.svg" 
+						style="background:none; border:none;"
+						alt="fast"
+						width="45%" />
+					<pre>
+						<code data-trim>			
+							import("stdfaust.lib");
+							
+							vol             = hslider("volume [unit:dB]", 0, -96, 0, 0.1) : ba.db2linear : si.smoo ;
+							freq            = hslider("freq [unit:Hz]", 1000, 20, 24000, 1);
+							
+							process         = vgroup("Oscillator", os.osc(freq) * vol);
+							
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<pre>
+						<code data-trim>			
+							class mydsp : public dsp {
+								private:
+								   FAUSTFLOAT fHslider0;
+								   float fRec0[2];
+								   int fSamplingFreq;
+								   float fConst0;
+								   FAUSTFLOAT fHslider1;
+								   float fRec2[2];								
+							   public:
+								... 
+								virtual void compute(int count, FAUSTFLOAT** inputs, FAUSTFLOAT** outputs) {
+									FAUSTFLOAT* output0 = outputs[0];
+									float fSlow0 = (0.00100000005f * std::pow(10.0f, (0.0500000007f * float(fHslider0))));
+									float fSlow1 = (fConst0 * float(fHslider1));
+									for (int i = 0; (i < count); i = (i + 1)) {
+										fRec0[0] = (fSlow0 + (0.999000013f * fRec0[1]));
+										fRec2[0] = (fSlow1 + (fRec2[1] - std::floor((fSlow1 + fRec2[1]))));
+										output0[i] = FAUSTFLOAT((fRec0[0] * ftbl0mydspSIG0[int((65536.0f * fRec2[0]))]));
+										fRec0[1] = fRec0[0];
+										fRec2[1] = fRec2[0];
+							
+									}
+							
+								}
+							}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<pre>
+						<code data-trim>			
+							pub struct mydsp {
+
+								fDummy: f32,
+								fHslider0: f32,
+								fRec0: [f32;2],
+								fSamplingFreq: i32,
+								fConst0: f32,
+								fHslider1: f32,
+								fRec2: [f32;2],
+							
+							}
+							
+							impl mydsp {
+								...
+								pub fn compute(&mut self, count: i32, inputs: &[&[f32]], outputs: &mut[&mut[f32]]) {
+									let mut fSlow0: f32 = (0.00100000005 * f32::powf(10.0, (0.0500000007 * (self.fHslider0 as f32))));
+									let mut fSlow1: f32 = (self.fConst0 * (self.fHslider1 as f32));
+									for i in 0..count {
+										self.fRec0[0] = (fSlow0 + (0.999000013 * self.fRec0[1]));
+										self.fRec2[0] = (fSlow1 + (self.fRec2[1] - f32::floor((fSlow1 + self.fRec2[1]))));
+										outputs[0][i as usize] = ((self.fRec0[0] * unsafe { ftbl0mydspSIG0[((65536.0 * self.fRec2[0]) as i32) as usize] }) as f32);
+										self.fRec0[1] = self.fRec0[0];
+										self.fRec2[1] = self.fRec2[0];
+							
+									}
+							
+								}
+							}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<pre>
+						<code data-trim>
+							pub fn buildUserInterface(&mut self, ui_interface: &mut UI<f32>) {
+								ui_interface.openVerticalBox("Oscillator");
+								ui_interface.declare(&mut self.fHslider1, "unit", "Hz");
+								ui_interface.addHorizontalSlider("freq", &mut self.fHslider1, 1000.0, 20.0, 24000.0, 1.0);
+								ui_interface.declare(&mut self.fHslider0, "unit", "dB");
+								ui_interface.addHorizontalSlider("volume", &mut self.fHslider0, 0.0, -96.0, 0.0, 0.10000000000000001);
+								ui_interface.closeBox();
+						
+							}
+						</code>
+					</pre>
+					<p>Implementation straight forward when supporting Faust's UI widgets, 
+						but assumes a conventional UI is directly changing parameters</p>
+				</section>
+				
+				<section>
+					<pre>
+						<code data-trim>
+							pub fn set_freq(&mut self, v: f32) {
+								self.fHslider1 = v;
+							}
+						</code>
+					</pre>
+					<p>Modified faust2rust to support custom setters, and getters.</p>
+				</section>
+				
+				<section>
+					<h1>The punch line</h1>
+					<p>All of this work was original developed on OS X, without 
+						any real thought about portability! But we've now ported 
+						it to the Raspberry Pi and Windows, with not much more 
+						work than cargo build!</p>
+				</section>
+
+				<section>
+					More information @project site
+					<p>
+						<a href="https://muses-dmi.github.io/">
+							<img 
+								class="plain"
+								src="assets/images/2226 Muses Text Logo.svg" 
+								alt="muses" 
+								style="background:none; border:none;"
+								width="50%" />
+						</a>
+					</p>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: '../plugin/markdown/marked.js' },
+					{ src: '../plugin/markdown/markdown.js' },
+					{ src: '../plugin/notes/notes.js', async: true },
+					{ src: '../plugin/highlight/highlight.js', callback: function() { hljs.initHighlightingOnLoad();} },
+					{ src: '../build/languages/haskell.min.js' },
+					{ src: 'assets/js/remote.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
