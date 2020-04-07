@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://bgaster.github.io/sitemap.xml
