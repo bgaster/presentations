@@ -5,16 +5,6 @@ based on dark.css by Ivan Sagalaev
 
 */
 
-.likert li {
-  float: left;
-  list-style-type: none;
-}
-
-canvas {
-  width: 400px;
-  height: 400px;
-}
-
 .hljs {
   display: block;
   overflow-x: auto;
