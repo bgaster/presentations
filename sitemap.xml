@@ -12,13 +12,6 @@
         </url>
     
         <url>
-            <loc>https://bgaster.github.io/blog/amethyst-render-plugin/</loc>
-            
-                <lastmod>2020-04-08</lastmod>
-            
-        </url>
-    
-        <url>
             <loc>https://bgaster.github.io/posts/</loc>
             
         </url>
@@ -27,6 +20,13 @@
             <loc>https://bgaster.github.io/posts/amethyst-render-plugin/</loc>
             
                 <lastmod>2020-04-08</lastmod>
+            
+        </url>
+    
+        <url>
+            <loc>https://bgaster.github.io/posts/rebound/</loc>
+            
+                <lastmod>2020-05-27</lastmod>
             
         </url>
     
