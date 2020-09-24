@@ -1,0 +1,537 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="../css/reset.css">
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="assets/css/steven.css">
+		
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../farm19/assets/css/muses-hightlight.css">
+		<!-- link rel="stylesheet" href="build/styles/darkula.min.css" -->
+
+		<!-- script src="assets/js/snap.svg-min.js"></script -->
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<style>
+			#hp  {
+				float: left;    
+				margin: 0 45px 0 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- The following enable the themes border-->
+		<div class="line top"></div>
+		<div class="line bottom"></div>
+		<div class="line left"></div>
+		<div class="line right"></div>
+
+		<div class="reveal">
+			<div class="slides">
+				<section 
+					data-separator="^\n\n\n"
+					data-separator-vertical="^\n\n"
+					data-separator-notes="^Note:"
+					data-charset="iso-8859-15"
+					data-background="assets/images/layout_graphic_action_script.svg">
+					<h1>Audio Anywhere	</h1>
+					<p>
+						Rust Edinburgh, September 2020
+						<br>
+						<br>
+						<small>
+							<a href="http://www.cems.uwe.ac.uk/~br-gaster/">Benedict R. Gaster</a> /
+							<a href="http://twitter.com/cuberoo_">@cuberoo_</a>
+							<br>
+							my pronouns are he/him/they or xe/xim/xir
+						</small>
+					</p>
+					<img 
+							class="plain"
+							src="assets/images/aa_logo.svg" 
+							alt="controllers" 
+							style="background:none; border:none;"
+							width="10%" />
+				</section>
+
+				<section>
+					<h3>Material related to this talk</h3>
+					<ul>
+						<li><a href="">Slides</a></li>
+						<li><a href="https://muses-dmi.github.io/audio_anywhere/overview/">Project home page</a></li>
+						<li>Source code is at <a href="https://github.com/bgaster">https://github.com/bgaster</a></li>
+						<li>
+							Up and comming paper: <a href="https://muses-dmi.github.io/assets/aa_faust2020-final.pdf">Gaster, 
+								Benedict R. and Cole, Max. (2020) Audio Anywhere with Faust. To appear in 
+								Proceedings of the 2ndInternational Faust Conference (IFC-20), December 2020</a>.
+						</li>
+					</ul>
+				</section>
+
+				<section>
+						<img 
+							class="plain"
+							src="assets/images/proto-arch.svg" 
+							alt="controllers" 
+							style="background:none; border:none;"
+							width="100%" />
+				</section>
+
+				<section>
+					<div>
+						<img id="hp"
+							class="plain"
+							src="assets/images/1200px-WebAssembly_Logo.svg.png" 
+							alt="controllers" 
+							style="background:none; border:none;"
+							width="60%" />
+							<div>
+								<p style="text-align:left;">"WebAssembly (abbreviated Wasm) is a binary instruction format for a stack-based 
+									virtual machine. Wasm is designed as a portable compilation target for programming 
+									languages, enabling deployment on the web for client and server applications."
+								</p>
+								<p style="text-align:right;">
+									W3C Working Group
+								</p>
+							</div>
+					</div>
+			</section>
+				
+				<section>
+					<h2>This got me wondering...</h2>
+				</section>
+
+				<section>
+					<h4>Wasm is not limited to the Browser</h4>
+				</section>
+
+				<section>
+					<h4>A number of projects to run Wasm natively</h4>
+					<ul>
+						<li><a href="https://github.com/bytecodealliance/wasmtime">Wasmtime</a></li>
+						<li><a href="https://wasmer.io/">Wasmer</a></li>
+						<li><a href="https://github.com/perlin-network/life">Life</a></li>
+						<li><a href="https://github.com/WebAssembly/wabt/tree/master/wasm2c">wasm2c</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<a href="http://kripken.github.io/talks/2020/universal.html#/">WebAssembly and the Elusive Universal Binary</a>
+					<p>Alon Zakai, 2020</p>
+				</section>
+
+				<section>
+					<h2>Wasm could imply, compile once run anywhere</h2>
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/tiffany.jpg" 
+						alt="controllers" 
+						style="background:none; border:none;"
+						width="70%" />
+					<h5 style="text-align:left;">
+						Things would be different one day. But you had to start small, like oak trees.
+					</h5>
+					<p style="text-align:right">Tiffany Aching</p>
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/vl1-daisy.png" 
+						alt="daisy" 
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/traditional-vs-wasm-compilation.png" 
+						alt="traditional vs WASM" 
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<section>
+					<h2>AA Module</h2>
+					<img 
+						class="plain"
+						src="assets/images/aa_module.svg" 
+						alt="traditional" 
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<section>
+					<h3>Hosting App Loads Bundle</h3>
+					<pre>
+						<code data-trim data-noescape class="rust">
+{
+	"wasm": [String],
+	"gui": String,
+	"info": {
+		...
+		"inputs": int, 
+		"outputs": int, 
+		...
+	}
+}
+						</code>
+					</pre>
+					Single hosting app for each supported platform
+				</section>
+
+				<section>
+					<img 
+						class="plain"
+						src="assets/images/aa_architecture.png" 
+						alt="traditional" 
+						style="background:none; border:none;"
+						width="60%" />
+				</section>
+
+				<section>
+					<h3>AA Bundle</h3>
+					<ul>
+						<li>URLs: module.wasm(s), each one implements the AA Wasm API for nodes in audio graph;</li>
+						<li>URL: gui.html, implementing the Javascript API for UI plugins; and</li>
+						<li>Set of configuration parameters, which are defined as part of the module bundle itself and 
+							describe its capabilities, parameter mappings, and initialization constants</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Audio Anywhere Wasm API</h2>
+				</section>
+
+				<section>
+					<h3>AA Wasm API (1)</h3>
+					<pre>
+						<code data-trim data-noescape class="rust">
+// initialize module 
+#[no_mangle]
+pub fn init(sample_rate: f64)
+
+// module meta data 
+#[no_mangle]
+pub fn get_sample_rate() -> f64 
+#[no_mangle]
+pub fn get_inputs() -> u32 
+#[no_mangle]
+pub fn get_outputs() -> u32 
+#[no_mangle]
+pub fn get_voices() -> i32
+						</code>
+					</pre>
+				</section>
+			
+				<section>
+					<h3>AA Wasm API (2)</h3>
+					<pre>
+						<code data-trim data-noescape class="rust">
+// parameters
+#[no_mangle]
+pub fn get_param_index(length: i32) -> i32 
+#[no_mangle]
+pub fn get_num_params_float() -> u32 
+#[no_mangle]
+pub fn set_param_float(index: u32, v: f32) 
+#[no_mangle]
+pub fn get_param_float(index: u32) -> f32
+
+// MIDI 
+#[no_mangle]
+pub fn handle_note_on(mn: i32, vel: f32) 
+#[no_mangle]
+pub fn handle_note_off(mn: i32, vel: f32)
+						</code>
+					</pre>
+				</section>
+			
+				<section>
+					<h3>AA Wasm API (3)</h3>
+					<pre>
+						<code data-trim data-noescape class="rust">
+// compute audio 
+#[no_mangle]
+pub fn compute(frames: u32)
+
+// input and output buffer management 
+#[no_mangle]
+pub fn get_input(index: u32) -> u32 
+#[no_mangle]
+pub fn get_output(index: u32) -> u32 
+#[no_mangle]
+pub fn set_input(index: u32, offset: u32) 
+#[no_mangle]
+pub fn set_output(index: u32, offset: u32)
+
+// extern functions provided by AA Host
+extern "C" pub fn set(index: u32, v: f32)
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h3>Writing the audio component</h3>
+					<br>
+					<p style="text-align:left;">
+						FAUST (Functional AUdio STream) is a domain-specific purely functional programming 
+						language for implementing signal processing algorithms in the form of libraries, 
+						audio plug-ins, or standalone applications.
+					</p>
+				</section>
+
+				<section>
+					<h3>AA Faust Example</h3>
+					<pre>
+						<code data-trim data-noescape class="rust">
+declare aavoices "2"; 
+
+import("stdfaust.lib"); 
+
+process = vgroup("voices", par(n, 2, vgroup("aavoice%n", voice))) ;
+voice = hgroup("midi", osc(freq)) 
+with {
+ freq = hslider("freq",200,50,1000,0.01); 
+ gain = hslider("gain",0.5,0,1,0.01); gate = button("gate");
+ envelope = en.adsr(0.01,0.01,0.8,0.1,gate)*gain;
+ osc(freq) = os.sawtooth(freq)*envelope; 
+};
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Implementation</h2>
+				</section>
+
+				<section>
+					<h3>Compilation flow for AA DSP Code</h3>
+					<img 
+						class="plain"
+						src="assets/images/aa-compilation-flow.svg" 
+						alt="traditional" 
+						style="background:none; border:none;"
+						width="50%" />
+				</section>
+
+				<section>
+					<h3>AA module static memory layout</h3>
+					<img 
+						class="plain"
+						src="assets/images/aa_module_memory_layout.svg" 
+						alt="traditional" 
+						style="background:none; border:none;"
+						width="70%" />
+				</section>
+
+				<section>
+					<h3>Compile Faust to Wasm via Rust</h3>
+					<ul>
+						<li>Why Rust?</li>
+						<li>Wasm is a particularly close friend to Wasm, but</li>
+						<li>It also provides a root to auto-vectorization and Wasm-128 SIMD</li>
+						<li>All the supporting libraries are written in Rust</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Compile Faust to Rust</h2>
+					<pre>
+						<code data-trim data-noescape class="rust">
+					faust2audioanywhere synth.dsp
+						</code>
+					</pre>
+					<a href="https://github.com/bgaster/faust">Fork of Faust compiler for AA on my Github</a>
+				</section>
+
+				<section>
+					<h3>Generated Rust for Faust .dsp</h3>
+					<pre>
+						<code data-trim data-noescape class="rust">
+struct mydsp {
+  ...
+}
+
+impl mydsp {
+  pub fn get_voices(&self) -> i32 { ... }
+  pub fn get_input(&self, index: u32) -> u32 { ... }
+  pub fn get_output(&self, index: u32) -> u32 { ... }
+  pub fn get_num_outputs(&self) -> i32 { ... }
+  pub fn handle_note_on(&mut self, mn: Note, vel: f32) { ... }	
+
+  unsafe fn compute(
+	&mut self, count: i32, inputs: &[T], outputs: &mut [&mut [T];2]) { ... }
+	
+  pub fn compute_external(&mut self, count: i32) { ... }
+}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h3>Generated compute_external function</h3>
+					<pre>
+						<code data-trim data-noescape class="rust">
+pub fn compute_external(&mut self, count: i32) {
+  unsafe {
+    let (output0, output1) = 
+      (::std::slice::from_raw_parts_mut(OUTPUTS[0], count as usize), 
+       ::std::slice::from_raw_parts_mut(OUTPUTS[1], count as usize));
+
+    self.compute(count, &[], &mut [output0, output1]);
+  }
+}	
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h3>generated compute function</h3>
+					<pre>
+						<code data-trim data-noescape class="rust">
+#[target_feature(enable = "simd128")] 
+unsafe fn compute(
+  &mut self, count: i32, inputs: &[T], outputs: &mut [&mut [T];2]) {
+  let [outputs0, outputs1] = outputs; 
+  let (outputs0, outputs1) = {
+    let outputs0 = outputs0[..count as usize].iter_mut(); 
+    let outputs1 = outputs1[..count as usize].iter_mut();
+    (outputs0, outputs1)
+  };
+  ...
+
+  let zipped_iterators = outputs0.zip(outputs1);
+  for (output0, output1) in zipped_iterators {
+    ...
+    *output0 = ... ...
+    *output1 = ... ...
+  } 
+}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h3>But how does in run in practice?</h3>
+				</section>
+
+				<section>
+					<h3>Faust copy processor - C++ vs Rust</h3>
+					<br>
+					<table style="width:100%">
+						<tr>
+						  <th>C++</th>
+						  <th>Rust</th>
+						  <th>Rust Optimized</th>
+						</tr>
+						<tr>
+						  <td>84860.747 MB/sec</td>
+						  <td>3379.915 MB/sec</td>
+						  <td>88353.927 MB/sec</td>
+						</tr>
+					</table>
+					<br>
+					<ul>
+						<li>Original Faust to Rust compiler, 20 times slower than C++</li> 
+						<li>Optimized Faust to Rust compiler, slightly faster than C++</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Null function call</h2>
+					<img 
+						class="plain"
+						src="assets/images/bm_null.svg" 
+						alt="controllers" 
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<section>
+					<h2>Sine OSC</h2>
+					<img 
+						class="plain"
+						src="assets/images/bm_sine.svg" 
+						alt="controllers" 
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<section>
+					<h2>Copy 1 channel in/out</h2>
+					<img 
+						class="plain"
+						src="assets/images/bm_copy1.svg" 
+						alt="controllers" 
+						style="background:none; border:none;"
+						width="100%" />
+				</section>
+
+				<section>
+					<h2>Next steps</h2>
+				</section>
+				<section>
+					<h3>Wasm lacks relocatable code</h3>
+					<img 
+						class="plain"
+						src="assets/images/aa_module_memory_layoutX.svg" 
+						alt="traditional" 
+						style="background:none; border:none;"
+						width="70%" />
+				</section>
+
+				<section>
+					More information @project site
+					<p>
+						<a href="https://muses-dmi.github.io/">
+							<img 
+								class="plain"
+								src="assets/images/2226 Muses Text Logo.svg" 
+								alt="muses" 
+								style="background:none; border:none;"
+								width="50%" />
+						</a>
+					</p>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: '../plugin/markdown/marked.js' },
+					{ src: '../plugin/markdown/markdown.js' },
+					{ src: '../plugin/notes/notes.js', async: true },
+					{ src: '../plugin/highlight/highlight.js', callback: function() { hljs.initHighlightingOnLoad();} },
+					{ src: '../build/languages/haskell.min.js' },
+					{ src: 'assets/js/remote.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

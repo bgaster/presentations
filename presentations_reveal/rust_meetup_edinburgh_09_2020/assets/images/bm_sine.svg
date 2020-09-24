@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1261 666" style="enable-background:new 0 0 1261 666;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill:none;stroke:#808080;stroke-width:0.5;stroke-dasharray:2,4;}
+	.st2{fill:none;stroke:#000000;}
+	.st3{font-family:'Helvetica';}
+	.st4{font-size:12px;}
+	.st5{font-family:'MyriadPro-Regular';}
+	.st6{font-size:18px;}
+	.st7{fill:none;stroke:#B22222;stroke-width:2;}
+	.st8{fill:#B22222;stroke:#B22222;stroke-width:0.7504;stroke-miterlimit:13.52;}
+	.st9{fill:none;stroke:#2E8B57;stroke-width:2;}
+	.st10{fill:#2E8B57;stroke:#2E8B57;stroke-width:0.7504;stroke-miterlimit:13.52;}
+	.st11{fill:none;stroke:#008B8B;stroke-width:2;}
+	.st12{fill:#008B8B;stroke:#008B8B;stroke-width:0.7504;stroke-miterlimit:13.52;}
+</style>
+<desc>Produced by GNUPLOT 5.2 patchlevel 8</desc>
+<rect y="-30.3" class="st0" width="1280" height="720"/>
+<g>
+	<path class="st1" d="M63.6,632.1h1024.7"/>
+</g>
+<g>
+	<path class="st2" d="M63.6,632.1h9"/>
+	<g transform="translate(55.3,666.3)">
+		<text transform="matrix(1 0 0 1 -6.6738 -30.2756)" class="st3 st4">0</text>
+	</g>
+</g>
+<g>
+	<path class="st1" d="M63.6,510.4h1024.7"/>
+</g>
+<g>
+	<path class="st2" d="M63.6,510.4h9"/>
+	<g transform="translate(55.3,544.6)">
+		<text transform="matrix(1 0 0 1 -6.6738 -30.2756)" class="st3 st4">5</text>
+	</g>
+</g>
+<g>
+	<path class="st1" d="M63.6,388.8h1024.7"/>
+</g>
+<g>
+	<path class="st2" d="M63.6,388.8h9"/>
+	<g transform="translate(55.3,423.0)">
+		<text transform="matrix(1 0 0 1 -13.3477 -30.2756)" class="st3 st4">10</text>
+	</g>
+</g>
+<g>
+	<path class="st1" d="M63.6,267.1h1024.7"/>
+</g>
+<g>
+	<path class="st2" d="M63.6,267.1h9"/>
+	<g transform="translate(55.3,301.3)">
+		<text transform="matrix(1 0 0 1 -13.3477 -30.2756)" class="st3 st4">15</text>
+	</g>
+</g>
+<g>
+	<path class="st1" d="M63.6,145.5h1024.7"/>
+</g>
+<g>
+	<path class="st2" d="M63.6,145.5h9"/>
+	<g transform="translate(55.3,179.7)">
+		<text transform="matrix(1 0 0 1 -13.3477 -30.2755)" class="st3 st4">20</text>
+	</g>
+</g>
+<g>
+	<path class="st1" d="M63.6,23.8h1024.7"/>
+</g>
+<g>
+	<path class="st2" d="M63.6,23.8h9"/>
+	<g transform="translate(55.3,58.0)">
+		<text transform="matrix(1 0 0 1 -13.3477 -30.2756)" class="st3 st4">25</text>
+	</g>
+</g>
+<g>
+	<path class="st2" d="M63.6,632.1v-9"/>
+	<g transform="translate(63.6,684.3)">
+		<text transform="matrix(1 0 0 1 -3.3369 -30.2756)" class="st3 st4">0</text>
+	</g>
+</g>
+<g>
+	<path class="st2" d="M63.6,23.8v608.3h1024.7V23.8H63.6z"/>
+</g>
+<g>
+	<g transform="translate(19.0,358.3) rotate(270)">
+		<text transform="matrix(1 0 0 1 -16.9686 0)" class="st3 st4">Average time (us)</text>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 502 654)" class="st5 st6">Block Size</text>
+<g>
+	<g transform="translate(1163.7,67.0)">
+		<text transform="matrix(1 0 0 1 0 -30.2756)" class="st3 st4">Native Sine</text>
+	</g>
+</g>
+<g>
+	<path class="st7" d="M1113.2,32.8h42.2 M64.5,632l12.8-0.9l13.6-1.2l27.4-1.9l54.6-4.1l109.3-8.2l218.6-14.8L938,569.6"/>
+</g>
+<g id="gnuplot_plot_2">
+	<g>
+		<g transform="translate(64.5,662.3) scale(3.38)">
+			<g id="gpPt6">
+				<circle id="gpPt5" class="st8" cx="64.5" cy="632" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(77.3,661.4) scale(3.38)">
+			<g id="gpPt6_1_">
+				<circle id="gpPt5_1_" class="st8" cx="77.3" cy="631.1" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(90.9,660.2) scale(3.38)">
+			<g id="gpPt6_2_">
+				<circle id="gpPt5_2_" class="st8" cx="90.9" cy="629.9" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(118.3,658.3) scale(3.38)">
+			<g id="gpPt6_3_">
+				<circle id="gpPt5_3_" class="st8" cx="118.3" cy="628" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(172.9,654.2) scale(3.38)">
+			<g id="gpPt6_4_">
+				<circle id="gpPt5_4_" class="st8" cx="172.9" cy="623.9" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(282.2,646.0) scale(3.38)">
+			<g id="gpPt6_5_">
+				<circle id="gpPt5_5_" class="st8" cx="282.2" cy="615.7" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(500.8,631.2) scale(3.38)">
+			<g id="gpPt6_6_">
+				<circle id="gpPt5_6_" class="st8" cx="500.8" cy="600.9" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(938.0,599.9) scale(3.38)">
+			<g id="gpPt6_7_">
+				<circle id="gpPt5_7_" class="st8" cx="938" cy="569.6" r="3.4"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<g transform="translate(1163.7,85.0)">
+		<text transform="matrix(1 0 0 1 0 -30.2756)" class="st3 st4">Wasmer Sine</text>
+	</g>
+</g>
+<g>
+	<path class="st9" d="M1113.2,50.8h42.2 M64.5,615.1l12.8-8.6l13.6-7.5l27.4-21.3l54.6-27.8l109.3-72l218.6-128.1L938,86.7"/>
+</g>
+<g id="gnuplot_plot_4">
+	<g>
+		<g transform="translate(64.5,645.4) scale(3.38)">
+			<g id="gpPt6_8_">
+				<circle id="gpPt5_8_" class="st10" cx="64.5" cy="615.1" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(77.3,636.8) scale(3.38)">
+			<g id="gpPt6_9_">
+				<circle id="gpPt5_9_" class="st10" cx="77.3" cy="606.5" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(90.9,629.3) scale(3.38)">
+			<g id="gpPt6_10_">
+				<circle id="gpPt5_10_" class="st10" cx="90.9" cy="599" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(118.3,608.0) scale(3.38)">
+			<g id="gpPt6_11_">
+				<circle id="gpPt5_11_" class="st10" cx="118.3" cy="577.7" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(172.9,580.2) scale(3.38)">
+			<g id="gpPt6_12_">
+				<circle id="gpPt5_12_" class="st10" cx="172.9" cy="549.9" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(282.2,508.2) scale(3.38)">
+			<g id="gpPt6_13_">
+				<circle id="gpPt5_13_" class="st10" cx="282.2" cy="477.9" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(500.8,380.1) scale(3.38)">
+			<g id="gpPt6_14_">
+				<circle id="gpPt5_14_" class="st10" cx="500.8" cy="349.8" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(938.0,117.0) scale(3.38)">
+			<g id="gpPt6_15_">
+				<circle id="gpPt5_15_" class="st10" cx="938" cy="86.7" r="3.4"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<g transform="translate(1163.7,103.0)">
+		<text transform="matrix(1 0 0 1 0 -30.2756)" class="st3 st4">Wasmtime Sine</text>
+	</g>
+</g>
+<path class="st11" d="M1113.2,68.8h42.2 M64.5,609.5l12.8-2.3l13.6-3.1l27.4-4.3l54.6-9.5l109.3-19.4l218.6-39.7L938,456.4"/>
+<g id="gnuplot_plot_6">
+	<g>
+		<g transform="translate(64.5,639.8) scale(3.38)">
+			<g id="gpPt6_16_">
+				<circle id="gpPt5_16_" class="st12" cx="64.5" cy="609.5" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(77.3,637.5) scale(3.38)">
+			<g id="gpPt6_17_">
+				<circle id="gpPt5_17_" class="st12" cx="77.3" cy="607.2" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(90.9,634.4) scale(3.38)">
+			<g id="gpPt6_18_">
+				<circle id="gpPt5_18_" class="st12" cx="90.9" cy="604.1" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(118.3,630.1) scale(3.38)">
+			<g id="gpPt6_19_">
+				<circle id="gpPt5_19_" class="st12" cx="118.3" cy="599.8" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(172.9,620.6) scale(3.38)">
+			<g id="gpPt6_20_">
+				<circle id="gpPt5_20_" class="st12" cx="172.9" cy="590.3" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(282.2,601.2) scale(3.38)">
+			<g id="gpPt6_21_">
+				<circle id="gpPt5_21_" class="st12" cx="282.2" cy="570.9" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(500.8,561.5) scale(3.38)">
+			<g id="gpPt6_22_">
+				<circle id="gpPt5_22_" class="st12" cx="500.8" cy="531.2" r="3.4"/>
+			</g>
+		</g>
+		<g transform="translate(938.0,486.7) scale(3.38)">
+			<g id="gpPt6_23_">
+				<circle id="gpPt5_23_" class="st12" cx="938" cy="456.4" r="3.4"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<path class="st2" d="M63.6,23.8v608.3h1024.7V23.8H63.6z"/>
+</g>
+</svg>
