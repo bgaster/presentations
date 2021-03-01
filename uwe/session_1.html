@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Project in Progress Day: Session 1</title>
+		<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+   		<link rel="stylesheet" href="css/normalize.css">
+  		<link rel="stylesheet" href="css/skeleton.css">
+		<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+		<script type="text/javascript">
+		</script>
+		<style type="text/css">
+			body {
+				background-color: #301f3b;
+				padding-right: 10px;
+				padding-left: 10px;
+			}
+			.title {
+				text-align: center;
+				color: #ccbfd9
+			}
+			#cipher {
+				width: 100%;
+				font-size: 2em;
+			}
+			#cipher .top, #cipher #bottom {
+				clear:both;
+				float:left;
+				width: 26em;
+				padding: 0;
+				height:1.1em;
+			}
+			#cipher #bottom {
+				overflow: hidden;
+				position: relative;
+				background:#301f3b;
+				height:3.0em;
+			}
+
+			#cipher #shift {
+				float: left;
+				color: #de9100
+			}
+
+			#letters {
+			}
+			#cover {
+				position: absolute;
+				width:100%;
+				height:100%;
+			}
+			#cipher .letter {
+				float:left;
+				width: 1em;
+				color: #16a3b6;
+			}
+
+			#plaintext, #ciphertext {
+				width: 50%;
+				float:left;
+			}
+
+			textarea {
+				width: 100%;
+				font-size: 1.5em;
+				font-family: serif;
+				height: 3em;
+				background-color: #7060eb;
+				overflow:hidden;
+			}
+
+			#cryptographer {
+				clear: both;
+				font-size: 1.5em;
+			}
+
+			.fixed-content {
+				top: 10px;
+				left:30px;
+				width: 100%;
+				padding-bottom: 10px;
+				position:fixed;
+				overflow-y:scroll;
+				overflow-x:hidden;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.navigation {
+				/* fixed keyword is fine too */
+				position: sticky;
+				top: 0;
+				z-index: 100;
+				/* z-index works pretty much like a layer:
+				the higher the z-index value, the greater
+				it will allow the navigation tag to stay on top
+				of other tags */
+			 }
+
+			 hr {
+				display: block;
+				height: 1px;
+				border: 0;
+				border-top: 1px solid#fa612d;
+				margin: 1em 0;
+				padding: 0;
+			}
+
+			p {
+				color: #ccbfd9
+			}
+
+			li {
+				color: #ccbfd9
+			}
+
+			h4 {
+				color: #ccbfd9
+			}
+
+			h5 {
+				color: #49e9a6
+			}
+
+			label {
+				color: #ccbfd9
+			}
+		</style>	
+	</head>
+	<body style="background-color: #301f3b">
+		<div id="fixed-content" class="fixed-content">
+				<h5>UFCFXK-30-3 - Session 1</h5>
+				<div style="padding-top: 10px;">
+					<a href="./">Home</a>
+				</div>
+			<hr/>
+		</div>
+		<div style="padding-top: 35px;">
+			<hr/>
+			<p>
+				<h4> ABDELATY, OMAR KHALED SALAHELDIN </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/1JWgFiLd74vtOZpO0zAauvzyckTEb_R4O/view?usp=sharing ">Poster</a></li>
+					<li><a href=" https://drive.google.com/drive/u/0/folders/1JOOhi8AaXo_-y97X-0m0WrTplLqxGEOO ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> AGBU, OBIEKWE JOSEPH </h4>
+				<ul>
+					<li><a href=" https://1drv.ms/p/s!AkW0-9lYkq9Kga0a_ceBRM9dwzRzLQ?e=VTNIb3 ">Poster</a></li>
+					<li><a href=" https://1drv.ms/v/s!AkW0-9lYkq9Kga0bzOvX8RMTNx4P5g?e=gjUu5a ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> BARBA, SAMUELE </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/1mnjbYy1unnbLvIC2OepSFzNXqieRUVFO/view?usp=sharing ">Poster</a></li>
+					<li><a href=" https://drive.google.com/file/d/1wpDxpwwD6l-ObTtO4waR4DE0lsP89lPq/view?usp=sharing ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> BARCLAY, ROBERT </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/robert2_barclay_live_uwe_ac_uk/EWzurJLu2d5FjPM5pYe9vB0Bt_H_UjoDeYWskJbi1-MKFQ?e=FSESYS ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/robert2_barclay_live_uwe_ac_uk/EQdEJbOcYoJPrGDkwenEGaYBYjzRpCgAb0ESchAZCIdcjw?e=RaPgnj Meeting logs: https://uweacuk-my.sharepoint.com/:w:/g/personal/robert2_barclay_live_uwe_ac_uk/EWosWZb1_EVOqXwf7Hg1v_0Bex-KY49bXtlaO0NPQi2_gw?e=3wjXjk ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> BENNION, HARRISON JOHN </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/harrison2_bennion_live_uwe_ac_uk/ERm4cDmJ6GVNrP8yivv56WQBqu7VZeM825tEJQrhqc61cQ?e=gFvTnk ">Poster</a></li>
+					<li><a href="  https://uweacuk-my.sharepoint.com/:v:/g/personal/harrison2_bennion_live_uwe_ac_uk/Ed3qBpJsOmpIo6rg0lJTpNcBMjQ3zYrj0dZ98Va9UgvjVw?e=VP0Qzi ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> BUI, BAO HOANG THIEN </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:p:/g/personal/bao2_bui_live_uwe_ac_uk/EY_HKN7oy1BPuhQJNmviwWIBLQxwW9e1JDu7txaqSYsMPw?e=WrHlzT ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/bao2_bui_live_uwe_ac_uk/EZnuy84dGapGrPeKUTJJVCMBHgnGtqxBlgx4iKFJT4gUFQ?e=vzgTEE ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> CAVANAGH, DARCY </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/1J1C9xMcYv7TmIIR4GimGKQjeaQnXBgmy/view?usp=sharing ">Poster</a></li>
+					<li><a href=" https://drive.google.com/file/d/1BbS3q6R1xPyAGcnVvWrqVBD4DANvF-vQ/view?usp=sharing ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> CLAYTON, LUKE </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/1VTqohkQozCa49TBd02hRiDHuGg8aPAs1/view?usp=sharing ">Poster</a></li>
+					<li><a href=" https://drive.google.com/file/d/1fKzTdfSMvCtK2VX6eTryFHWjz8Dlobov/view?usp=drivesdk ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> CLIFFORD, TOM </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/tom2_clifford_live_uwe_ac_uk/EfpvVUUifPNPo2riGXxSHCsBS-DUV2_bwPVJ4aA5_dp1Kw?e=y2iefK ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/tom2_clifford_live_uwe_ac_uk/EbxD7lZ3oCZLtvAMazumelgBdcQZCNQURlpTi0WoFeDdyw?e=TMXUOg ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> COLWILL, SAM </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/1XDc3PxLsA_s_gmscnhsf7ruUyT7rRssv/view?usp=sharing ">Poster</a></li>
+					<li><a href=" https://drive.google.com/file/d/1zV6Y-SS_uR10xhwTZtbIV90VQ9hMQ60J/view?usp=sharing ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> COODE, JACK </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/jack2_coode_live_uwe_ac_uk/Ec7uolhB3klHsGmT-AwH-rsBUd8cRwASyHEDslmBj1j7sw?e=OzzuPG ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/jack2_coode_live_uwe_ac_uk/Ea5zSvmgh95Jk_7oJr6Uv2gBIiYD8h9cZBL5-GJ9-4DHlQ?e=2Hei3V ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> CROOK, LOUIE </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:p:/g/personal/louie2_crook_live_uwe_ac_uk/EWidwJmUWfFEm6MYcBw4Vg4BSUiqMJNYeNZl7d1Wz7KhKQ?e=AWhiHk ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/louie2_crook_live_uwe_ac_uk/EX5bWlwCIn5EmGIoB_17lcwBiNU1jxZ8Aco08USk-Iz0oQ?e=sImRkA ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> DAWE, WILLIAM </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/william2_dawe_live_uwe_ac_uk/EVYLbOuauhFJvX__EwiqKTsBWjd6-LvoMntqf_OwNFXSDQ ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/william2_dawe_live_uwe_ac_uk/EWWCiQjQRTlNrWNmVXt1LGcB37p5hezOtvhsj0p881WOsQ ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> GORING, TOM </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/1EedF2fRQ9CqVcEZ3sZ2foKkyAIzvU_Do/view?usp=sharing ">Poster</a></li>
+					<li><a href=" https://drive.google.com/file/d/1qd1RypTWgjnoCn8EuPBuS4HZDmTT4xGH/view?usp=sharing ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> GREALISH, ELIJAH JOSEPH </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/r/personal/elijah2_grealish_live_uwe_ac_uk/Documents/DSP%20Video/DSP%20Poster%2018035194.pdf?csf=1&web=1&e=ErsKg4 ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/r/personal/elijah2_grealish_live_uwe_ac_uk/Documents/DSP%20Video/DSP%20VIdeo%2018035194.mp4?csf=1&web=1&e=ssGike ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> GREENFIELD, GEORGE </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/george3_greenfield_live_uwe_ac_uk/EbnBuFKT8A9Kkju4ANSX2ZQB1dXH4CS4BwbtRk1ehiH9NA?e=9jiRFy ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/george3_greenfield_live_uwe_ac_uk/ERj4FxUAuA5MmFxyCx2t31YBzcFUBZZqnL13qWb6mYD3Qw?e=NnTXAa  ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> GYAMFI, MAXWELL EFFAH </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/maxwell2_gyamfi_live_uwe_ac_uk/EU_NDiNlze5Djn3qOW7tyogBWxbg51CIqwfCZUwFr2TRXA?e=ffZPfL ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/maxwell2_gyamfi_live_uwe_ac_uk/EXodfAMYA09AhFjp2jU1p40BRRA87UEizMC89gUmNcHmVA?e=aMu5gb ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> HA, LAM KHANH </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:p:/g/personal/lam2_ha_live_uwe_ac_uk/Ee9t8MYb_-pLhngq3X3ruMkBLNncz9ij9J5DJ4wBtRDqJQ?e=VJlxjk ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/lam2_ha_live_uwe_ac_uk/ER4Xz7ATnKdAgt7JMYti00UBakRCLrsESar3Q4d7Mb2IPQ?e=ls1bVL ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> HARPER, AUSTIN DENNIS </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/austin2_harper_live_uwe_ac_uk/ERs_zrObk6lChZDZaBZOL-4Bgg6hfOnZ3Pq1DtX7p3-O-A?e=IDkZcT ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/austin2_harper_live_uwe_ac_uk/Efc31NFOyIlLpKeb5Wqp4_wB6uat9kN6F8lgLpvj5ZI6PA?e=1Teluu ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> HOBBY MEGO, MICAH GABRIEL </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/micah2_hobbymego_live_uwe_ac_uk/Eezq0oTHKX1NoaMUwDfazHQBA9dJsk2kt4QJ9xNUFMqi9g?e=fSY7Zb ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/micah2_hobbymego_live_uwe_ac_uk/EURWTiTIccxPiZw4Zlw41vIBRTLTk-auLWItQeGl2cVxyA?e=q0YyHE ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> JACKSON, ANGELA </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/1wAQ_l99fPYRjqYfwRPeHsks-9yYG-dqW/view?usp=sharing ">Poster</a></li>
+					<li><a href=" https://drive.google.com/file/d/1RwoN9FwtxB1UAUUkumXxAA3VyadeAT_M/view?usp=sharing ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> JACKSON, CALLUM </h4>
+				<ul>
+					<li><a href=" https://wetransfer.com/downloads/49952070c79156b341c9bd567bb0869120210225134309/686ad80549fc64c128b51ced6a250b5f20210225134326/a3bd4b ">Poster</a></li>
+					<li><a href=" https://wetransfer.com/downloads/6a11b93bf77ed4d7f943e31c588a18f220210225135158/b6f0c08340b389337bdf21fbcfdc846720210225135210/5bba38 ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> JEREMIAH, JAMES </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/james2_jeremiah_live_uwe_ac_uk/EV5r7kNihYJLsOobEQXtJ5YBZZkPQOae5IjkqpR8CwCNcQ?e=qTPMB7 ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/james2_jeremiah_live_uwe_ac_uk/EWLp6lmQbPtGr7IDUXf9JpoBi9ztF6wFtOvjI5l4OoWt2g?e=GXZrfk ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> KIRK, SAMUEL </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/samuel2_kirk_live_uwe_ac_uk/EY_rhj2sGcJKjBygYmllJTABKMlKmpTmOH-ojx4TSEE_XQ?e=NjlJVy ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/samuel2_kirk_live_uwe_ac_uk/EV4A1BMfhZxJhabfgEVs9i0BUE6Y04oNIZ7fyU7t2og1_w?e=yzbmzM ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> LE, MINH ANH </h4>
+				<ul>
+					<li><a href=" https://cutt.ly/NlIxGvy ">Poster</a></li>
+					<li><a href=" https://cutt.ly/plL6Dzr ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> MAHDLI, ABDULLAH </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/1aRP-HYF1Y-Klrgd_Xg1-2IUuIvC30Y2X/view?usp=sharing ">Poster</a></li>
+					<li><a href=" https://drive.google.com/file/d/10JKHDvQuWeEpZJDoyvw6bxvFk4oXANvT/view?usp=sharing ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> MEIER, TRENT ALAN </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/trent2_meier_live_uwe_ac_uk/EdSefZdubKtGsV8rHZuwQlcBwQT4mrWxn2ronKHMqoyiLQ?e=kCPd4t ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/trent2_meier_live_uwe_ac_uk/Eeiz6FEE8htKnor4fwV5MzUBxa6MrLyg8DHZdrf2c1ONyA?e=b5ZymF ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> MOL, JAKUB </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/18mOJJJ6Jwkq1dHTQGZZ6y7NfQK6BIJSp/view?usp=sharing ">Poster</a></li>
+					<li><a href=" https://drive.google.com/file/d/1ReSo3wL57LsP8kJgSpeMkKzJMs6uKhSq/view?usp=sharing ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> NGUYEN, HUE THI MINH </h4>
+				<ul>
+					<li><a href=" https://1drv.ms/b/s!Ah3lqfZwEmDmqltqdLmF2JM8x4Tr?e=dqJVX2 ">Poster</a></li>
+					<li><a href=" https://1drv.ms/v/s!Ah3lqfZwEmDmqlo88ypMyWvSy8SO?e=7moSpA ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> NGUYEN, MINH HOANG </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/1JmssgusJRwhYYW7aB0hD-jGha5xvKRpf/view?usp=drivesdk ">Poster</a></li>
+					<li><a href=" https://drive.google.com/file/d/1K1dbNnHxFgujFC0KwFGDdbu7hVCc7jNw ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> NGUYEN, TUAN CONG </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:f:/g/personal/tuan5_nguyen_live_uwe_ac_uk/ErbQvqvGSbpPi2jSz7ohYYUBqcUQapvbNKa9efstdIrXAA?e=iq66pw ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:f:/g/personal/tuan5_nguyen_live_uwe_ac_uk/EjGXkuqM0CBConBmgZdVbhQBllnmdTsZsJXgD0SAA-r5Fw?e=DphciP ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> PAINTER, ROBERT JAMES </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/robert2_painter_live_uwe_ac_uk/EV7ML0Q-r79Diaik36nP4EABktZLdwLI_1sdguLWA-MYkA?e=5sSgWO ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/robert2_painter_live_uwe_ac_uk/EaO8xJ7bPmJDuN5ZjfHx7CYBbR92e3yegxgP1Ht_RpAaZg?e=Rn2tzv  ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> PEARCE, CONRAN ANDREW </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/conran2_pearce_live_uwe_ac_uk/EXIVNF7IsLREou8Vd4my928BcOnST8yZD75Cn-jY9_RvcQ ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/conran2_pearce_live_uwe_ac_uk/Ef7LftM9odxClQdI-U21c6cBj36JgDCL_dXGsYe3mIQOMA?e=LDoDvR  ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> PHAN, PHONG MINH </h4>
+				<ul>
+					<li><a href="  https://drive.google.com/file/d/1dTIb1e3Z3cw3pUKU8_6Y15cLV3arfaS7/view?usp=sharing ">Poster</a></li>
+					<li><a href="  https://drive.google.com/file/d/1kZBWpgrJyLWmTnU-WBxiJ1vsI2CU2NgS/view?usp=sharing ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> RAI, VIJAY </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/vijay2_rai_live_uwe_ac_uk/ETcZz0Xz17pNjOOGqEglaToBtiHzfdDT-_OatdEEnKNAOQ?e=Y4Jgz6 ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/vijay2_rai_live_uwe_ac_uk/ETNpVmVd_s5Pq_GxifDZQzIBkO-T2d6Fq9CgNmYD9CbzlQ?e=Ffsrc4 ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> RANSOM, JACK MATTHEW </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:p:/g/personal/jack2_ransom_live_uwe_ac_uk/EQHzCenYOIRLr1B-gfg5m0wBGhruJ4U0rZcahHjqwToE8w?e=7qeNpb ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/jack2_ransom_live_uwe_ac_uk/EUh1zDtltW9Fu7F1DVKU2KMBwvirAQ5MqHZjwgtYKiTKjg?e=qWNs5v ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> SAJJAD, MUHAMMAD </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/1xVRj_AK9BCj9BMD9fOhFWx-aaumRoXid/view?usp=sharing ">Poster</a></li>
+					<li><a href=" https://drive.google.com/file/d/1tnfl2cRgJDIWpWkVqiMRtnFPfY-RuIQr/view?usp=sharing ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> SANCHEZ, RODRIGO ELIAS </h4>
+				<ul>
+					<li><a href=" https://drive.google.com/file/d/1LyawKHmNVILPmezPqJa_rXpSzJxOmyWc/view?usp=sharing ">Poster</a></li>
+					<li><a href=" https://drive.google.com/file/d/1FUAE6yYrrWcLZ7xp4jz-explwRCGJXUw/view?usp=sharing ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> SARUP-LYTZEN, NIKLAS </h4>
+				<ul>
+					<li><a href=" https://www.dropbox.com/s/6oix22kt60eu9ar/project-poster-Niklas-Sarup-Lytzen%2825-02-21%29.pdf?dl=0 ">Poster</a></li>
+					<li><a href=" https://www.dropbox.com/s/banq9xyb4i18x1i/project_poster_video-Niklas-Sarup-Lytzen%2825-02-21%29.mp4?dl=07 ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> SHAHID, ALMAS </h4>
+				<ul>
+					<li><a href=" https://1drv.ms/p/s!AmE3UAjOSr1hkcsv3MFyv9CrozaFXQ?e=bzVbgi ">Poster</a></li>
+					<li><a href=" https://1drv.ms/v/s!AmE3UAjOSr1hkctDnSzKGdZWDSSZtg?e=coeaOb ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> SHEN, BIAO </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/r/personal/biao2_shen_live_uwe_ac_uk/Documents/Poster%20,%20Logs%20and%20Video/Poster%20of%20Chinese%20Chess%20(add%20Rule%20of%20Chinese%20Chess).pdf?csf=1&web=1&e=hSoFx7 ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/r/personal/biao2_shen_live_uwe_ac_uk/Documents/Poster%20,%20Logs%20and%20Video/20210224_180957.mp4?csf=1&web=1&e=VaZ3TY ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> SONGDAENG, VARUT </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/varut2_songdaeng_live_uwe_ac_uk/EYEc-AhdxgBNn7HVEokjHsgBG5l9tRme2u4JloOJSeBieQ?e=EACK2L ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/varut2_songdaeng_live_uwe_ac_uk/ESRqIfKXEWRCittQGet9QPkBaIsNDB2SWPerH0lWwmVKMg?e=4FiUrd ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> TONKIN, MICHAEL WILLIAM </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:p:/g/personal/michael2_tonkin_live_uwe_ac_uk/Eftu4qh3DQlAhRWoJwdRKy0B1YXZS_FMT-X1-mM7hNsJ1g?e=ZCmG7n ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/michael2_tonkin_live_uwe_ac_uk/EaEDImXztexNrP-J5R4jr_kB-znAWGek-E6LY8-jSVBcJQ?e=0i03qw ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> WELCH, MORGAN </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/morgan2_welch_live_uwe_ac_uk/EVfxWlUU8eNHp6queMvF020BB7npjVJujm7x11BpBCzbSQ?e=9QmMsI ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/morgan2_welch_live_uwe_ac_uk/EUeM19116LhAh_p-K7oVtssBRy30cEzz4Y3dJSygt3Iz7Q?e=xbfpGY ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> WHITWORTH, CAMERON </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/cameron2_whitworth_live_uwe_ac_uk/EarNvVdlgVtKhXy0f3b37H4BDYffTwTonPMoI0ai2cQWYw?e=4GXcLX ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/cameron2_whitworth_live_uwe_ac_uk/EdVE0lGscptGlBOcB-0nFOoBUmt3Zr1014uGLkXEgoYYHA?e=Ps4iki ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> WILLIAMS, CHARLIE </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/charlie3_williams_live_uwe_ac_uk/EZvFQHavttJKgmdk5So1C2MBSqoNrFBVj2aKZZaTHsoypQ?e=or4yev ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/charlie3_williams_live_uwe_ac_uk/EdQFmkBm3sxHubYETknE3yoBXEoowfg3TmzIikoPTjuYnw?e=RAHp5P ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> WILLIAMS, RYAN GEORGE </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/ryan6_williams_live_uwe_ac_uk/Ef7PDMqpME5GpqgOLBuPr-wBhjhqS9VE9OIiD1yb4UpcUw?e=mQ1qYD ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/ryan6_williams_live_uwe_ac_uk/EcvKjVyBxvJAv3hKhwUyhAsBiAeGGvTi7SQmMA9B6p1hLA?e=KyXZYW ">Video</a></li>
+				</ul>
+			</p>
+			<p>
+				<h4> WINTER, ASHLEY </h4>
+				<ul>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:b:/g/personal/ashley2_winter_live_uwe_ac_uk/EdsZA3XdpYxCgKMiPRpOkcYB2eyfAOVp3aLFKDSBHpcNJg?e=HLpxG0 ">Poster</a></li>
+					<li><a href=" https://uweacuk-my.sharepoint.com/:v:/g/personal/ashley2_winter_live_uwe_ac_uk/EaXM3maVrMpIl3GLujOAgIQBs4dcU4cCTmvkRHRdCSTMPg?e=h18zig ">Video</a></li>
+				</ul>
+			</p>
+
+
+		</div>
+	</body>
+</html>
+
+
